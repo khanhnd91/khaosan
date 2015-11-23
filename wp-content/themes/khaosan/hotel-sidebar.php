@@ -2,12 +2,12 @@
             <!-- menu area -->
             <div class="menu_area">
             <div class="arrow" style="top: 92px; left: 12px;">
-                <img src="img/menu/hostel/arrow.png">
+                <img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/arrow.png">
             </div>
                 <ul>
-                    <li><img src="img/menu/hostel/top.png">Top</li>
-                    <li><img src="img/menu/hostel/facilities.png">RoomType / Rates</li>
-                    <li><img src="img/menu/hostel/access.png">Access</li>
+                    <li><img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/top.png">Top</li>
+                    <li><img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/facilities.png">RoomType / Rates</li>
+                    <li><img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/access.png">Access</li>
                 </ul>
             </div>
             <!-- information -->
