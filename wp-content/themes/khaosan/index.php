@@ -1,3 +1,45 @@
+<!-- CSS -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/jquery-ui-1.9.2.custom.min.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/jquery.mmenu.all.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/select2.min.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/style.css">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/common.css">
+<style>
+        .ui-datepicker {
+                font-size: 85%;
+        }
+        #city {
+                width: 150px;
+        }
+        #nights {
+                width: 100px;
+        }
+        #guests {
+                width: 100px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+                font-size: 12px;
+        }
+
+        .select2-container--default .select2-selection--single {
+                border-radius: 2px;
+        }
+        .select2-results__option {
+                font-size: 12px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+                top: 10px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+                line-height: 45px;
+                font-size: 12px;
+                color: #999;
+        }
+        .select2-container .select2-selection--single {
+                height: 47px;
+        }
+</style>
 <?php
 get_header();
 ?>
@@ -55,43 +97,7 @@ get_header();
             </div>
 
             <!-- select -->
-            <div id="button_area">
-                    <form name="selbox">
-                            <select class="area">
-                                    <option value="#">Area</option>
-                                    <option value="#">TOKYO</option>
-                                    <option value="#">KYOTO</option>
-                                    <option value="#">SAPPORO</option>
-                            </select>
-                            <select class="check_in">
-                                    <option value="#">Check in</option>
-                            </select>
-                            <select class="check_out">
-                                    <option value="#">Check out</option>
-                            </select>
-                            <select class="guest">
-                                    <option value="#">Guest</option>
-                                    <option value="#">1</option>
-                                    <option value="#">2</option>
-                                    <option value="#">3</option>
-                                    <option value="#">4</option>
-                                    <option value="#">5</option>
-                                    <option value="#">6</option>
-                                    <option value="#">7</option>
-                                    <option value="#">8</option>
-                                    <option value="#">9</option>
-                                    <option value="#">10</option>
-                            </select>
-                            <!--
-                            <select class="currency">
-                                    <option value="#">Currency</option>
-                                    <option value="#">JPY</option>
-                                    <option value="#">USD</option>
-                            </select>
-                            -->
-                            <input type=button onClick="top.location.href=sel3.value" value="search" class="article_button">
-                    </form>
-            </div>
+            <?php get_template_part( 'search-menu' );?>
 
             <!-- TODO:【wordpressにてホテルの追加・更新】 -->
             <!-- HOSTEL -->
@@ -100,169 +106,55 @@ get_header();
             </div>
             <div class="imgbox_back">
                     <div class="imgbox_area">
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/original.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN TOKYO<br>
-                                                    ORIGINAL
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/kabuki.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN TOKYO<br>
-                                                    KABUKI
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/world.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/car_rental.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN WORLD<br>
-                                                    ASAKUSA
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/labo.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/children.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/bar.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN TOKYO<br>
-                                                    LABORATORY
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/origami.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN TOKYO<br>
-                                                    ORIGAMI
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #ff4d4d">TOKYO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/samurai.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN TOKYO<br>
-                                                    SAMURAI CAPSULE
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #8C8C00">KYOTO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/kyoto.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN KYOTO<br>
-                                                    GUESTHOUSE
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #8C8C00">KYOTO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/kyoto_shiater.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/bar.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN KYOTO<br>
-                                                    THEATER
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #003366">SAPPORO</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/sapporo.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/children.png"></div>
-                                            <div class="hostel_name">
-                                                    INTERNATIONAL HOSTEL<br>
-                                                    KHAOSAN SAPPORO
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #D96D00">ATAMI</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/comingsoon.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/children.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/hotsprings.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN ATAMI
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
-                            <!-- TODO:【wordpressにてホテル詳細の更新】 -->
-                            <!-- ホステル情報ここから -->
-                            <a href="#">
-                                    <div class="imgbox">
-                                            <div class="area" style="background: #004D14">KANAZAWA</div>
-                                            <img src="<?php echo get_template_directory_uri()?>/img/hostels/comingsoon.jpg">
-                                            <div class="icon"><img src="<?php echo get_template_directory_uri()?>/img/icon/man.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/group.png"><img src="<?php echo get_template_directory_uri()?>/img/icon/children.png"></div>
-                                            <div class="hostel_name">
-                                                    KHAOSAN KANAZAWA
-                                            </div>
-                                    </div>
-                            </a>
-                            <!-- ホステル情報ここまで -->
-
+                        <?php
+                        $cities = get_terms( 'city','hide_empty=0' );
+                        if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
+                            foreach ( $cities as $city ) {
+                        ?>
+                                <?php
+                                $hotels = get_objects_in_term( $city->term_id, 'city');
+                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
+                                    foreach($hotels as $hotel){
+                                        $post = get_post( $hotel );
+                                ?>
+                                        <a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>">
+                                                <div class="imgbox">
+                                                        <div class="area"
+                                                             style="background:
+                                                                <?php
+                                                                    if($city->name == 'KYOTO') echo "#8C8C00";
+                                                                    else if($city->name == 'SAPPORO') echo "#003366"; 
+                                                                    else if($city->name == 'ATAMI') echo "#D96D00"; 
+                                                                    else if($city->name == 'KANAZAWA') echo "#004D14"; 
+                                                                    else echo "#ff4d4d";
+                                                                ?>"
+                                                        >
+                                                            <?php echo $city->name ?>
+                                                        </div>
+                                                        <?php
+                                                        $eye_catch = get_post_meta ( $hotel,'hotel_eye_catch', true);
+                                                        ?>                                                        
+                                                        <img src="<?php echo $eye_catch[1][1];?>">
+                                                        <div class="icon">
+                                                            <img src="<?php echo get_template_directory_uri()?>/img/icon/man.png">
+                                                            <img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png">
+                                                        </div>
+                                                        <div class="hostel_name">
+                                                            <?php
+                                                            $hotel_name = get_post_meta ( $hotel,'hotel_name', true);
+                                                            echo $hotel_name[1][1];
+                                                            ?>
+                                                        </div>
+                                                </div>
+                                        </a>
+                                <?php
+                                    }
+                                }
+                                ?>
+                        <?php
+                            }
+                        }
+                        ?> 
                     </div>
             </div>
 
@@ -323,3 +215,65 @@ get_header();
 <?php
 get_footer();
 ?>
+<!-- js -->
+<script src="<?php echo get_template_directory_uri()?>/js/jquery-1.9.1.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/jquery.mmenu.min.all.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/owl.carousel.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/googlemaps3.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/select2.full.min.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/common.js"></script>
+<script>
+        google.maps.event.addDomListener(window, "load", inicializar("<?php echo get_template_directory_uri()?>"));
+        
+        $(function () {
+                // カルーセル
+                $("#owl-demo").owlCarousel({
+                        navigation: true,		// Show next and prev buttons
+                        slideSpeed: 300,		// ページ送りした時のスライドスピード
+                        paginationSpeed: 800,	// 自動のスライドスピード
+                        singleItem: true,		// アイテムを1つにする
+                        autoPlay: 5000,			// 自動でスライドするスピード。例：5000の場合、5秒
+                });
+
+                // GoogleMap
+                $("#map-canvas").on("load", function () {
+                        initialize();
+                });
+
+                // カレンダー
+                $("#check-in").datepicker();
+                $("#check-out").datepicker();
+
+                //
+//			$("#city").change(function () {
+//			if($(this).val() == "") $(this).addClass("place");
+//			else $(this).removeClass("city")
+//			});
+//			$("#city").change();
+
+                // 都市
+                $("#city").select2({
+                        minimumResultsForSearch: Infinity,
+                });
+
+                // 宿泊数
+                $("#nights").select2({
+                        minimumResultsForSearch: Infinity,
+                        placeholder: "Nights"
+                });
+
+                // 人数
+                $("#guests").select2({
+                        minimumResultsForSearch: Infinity,
+                        placeholder: "Guests"
+                });
+
+                // 通貨
+                $("#currency").select2({
+                        minimumResultsForSearch: Infinity,
+                        placeholder: "Currency"
+                });
+        });
+</script>

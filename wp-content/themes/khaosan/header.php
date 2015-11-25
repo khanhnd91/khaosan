@@ -42,42 +42,38 @@
 
                     <!-- desktop_menu -->
                     <div id="desktop_menu">
-                            <ul>
+                            <ul id="toggle">
                                     <li>
-                                        <a class="toggle" href="<?php get_home_url()?>/about">ABOUT</a>
+                                        <a class="toggle" href="<?php echo get_home_url()?>/about">ABOUT</a>
                                     </li>
                                     <li>
                                             <a class="toggle" href="#">HOSTEL</a>
                                             <ul class="inner child">
+                                            <?php
+                                            $cities = get_terms( 'city','hide_empty=0' );
+                                            if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
+                                                foreach ( $cities as $city ) {
+                                            ?>
                                                     <li>
-                                                            <a class="toggle menu">TOKYO</a>
+                                                            <a class="toggle menu"><?php echo $city->name?></a>
                                                             <ul class="inner child child02">
-                                                                    <li><a href="#">KHAOSAN TOKYO SAMURAI CAPSULE</a></li>
-                                                                    <li><a href="#">KHAOSAN TOKYO ORIGAMI</a></li>
-                                                                    <li><a href="#">KHAOSAN WORLD ASAKUSA</a></li>
-                                                                    <li><a href="#">KHAOSAN TOKYO LABORATORY</a></li>
-                                                                    <li><a href="#">KHAOSAN TOKYO ORIGINAL</a></li>
+                                                                <?php
+                                                                $hotels = get_objects_in_term( $city->term_id, 'city');
+                                                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
+                                                                    foreach($hotels as $hotel){
+                                                                        $post = get_post( $hotel );
+                                                                ?>
+                                                                <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>"><?php echo $post->post_title?></a></li>
+                                                                <?php
+                                                                    }
+                                                                }
+                                                                ?>
                                                             </ul>
                                                     </li>
-                                                    <li>
-                                                            <a class="toggle menu">KYOTO</a>
-                                                            <ul class="inner child child02">
-                                                                    <li><a href="#">KHAOSAN KYOTO THEATER</a></li>
-                                                                    <li><a href="#">KHAOSAN KYOTO GUESTHOUSE</a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <a class="toggle menu">HOKKAIDO</a>
-                                                            <ul class="inner child child02">
-                                                                    <li><a href="#">INTERNATIONAL HOSTEL SAPPORO</a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <a class="toggle menu">SHIZUOKA</a>
-                                                            <ul class="inner child child02">
-                                                                    <li><a href="#">KHAOSAN ATAMI</a></li>
-                                                            </ul>
-                                                    </li>
+                                            <?php
+                                                }
+                                            }
+                                            ?>                                                
                                             </ul>
                                     </li>
                                     <li>
@@ -116,65 +112,55 @@
                                     </li>
                                     <li>
                                             <a>HOSTEL</a>
-                                            <ul>
+                                            <ul class="inner child">
+                                            <?php
+                                            $cities = get_terms( 'city','hide_empty=0' );
+                                            if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
+                                                foreach ( $cities as $city ) {
+                                            ?>
                                                     <li>
-                                                            <a>TOKYO</a>
-                                                            <ul>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN TOKYO SAMURAI CAPSULE</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN TOKYO ORIGAMI</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN WORLD ASAKUSA</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN TOKYO LABORATORY</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN TOKYO KABUKI</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN TOKYO ORIGINAL</a>
-                                                                    </li>
+                                                            <a class="toggle menu"><?php echo $city->name?></a>
+                                                            <ul class="inner child child02">
+                                                                <?php
+                                                                $hotels = get_objects_in_term( $city->term_id, 'city');
+                                                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
+                                                                    foreach($hotels as $hotel){
+                                                                        $post = get_post( $hotel );
+                                                                ?>
+                                                                <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>"><?php echo $post->post_title?></a></li>
+                                                                <?php
+                                                                    }
+                                                                }
+                                                                ?>
                                                             </ul>
                                                     </li>
-                                                    <li>
-                                                            <a>KYOTO</a>
-                                                            <ul>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN KYOTO THEATER</a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="#">KHAOSAN KYOTO GUESTHOUSE</a>
-                                                                    </li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <a>SAPPORO</a>
-                                                            <ul>
-                                                                    <li>
-                                                                            <a href="#">International Hostel Khaosan Sapporo</a>
-                                                                    </li>
-                                                            </ul>
-                                                    </li>
+                                            <?php
+                                                }
+                                            }
+                                            ?>                                                
                                             </ul>
                                     </li>
                                     <li>
-                                            <a href="#">BLOG</a>
+                                            <a class="toggle" href="#">BLOG</a>
                                     </li>
                                     <li>
-                                            <a href="#">STAFF</a>
+                                            <a class="toggle" href="#">STAFF</a>
                                     </li>
                                     <li>
-                                            <a href="#">RECRUITMENT</a>
+                                            <a class="toggle" href="#">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a href="#">Q&A</a>
+                                            <a class="toggle" href="#">Q&A</a>
                                     </li>
                                     <li>
-                                            <a href="#">CAR RENTAL</a>
+                                            <a class="toggle" href="#">CAR RENTAL</a>
+                                            <ul class="inner child">
+                                                    <li>
+                                                            <ul class="toggle menu">
+                                                                    <li><a href="">COMING SOON</a></li>
+                                                            </ul>
+                                                    </li>
+                                            </ul>
                                     </li>
                             </ul>
                     </nav>
