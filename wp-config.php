@@ -26,8 +26,8 @@ if ( file_exists('/opt/aws/cloud_formation.json') ) {
 if ( !$db_data ) {
 	$db_data = array(
 		'database' => 'i_fbae105e',
-		'username' => 'wp_cg341nal2ej5e',
-		'password' => 'f$7QLSX#4RjmphsohJMOl$ZXSZtkU#aB',
+		'username' => 'root',
+		'password' => '',
 		'host'     => 'localhost',
 	);
 }
