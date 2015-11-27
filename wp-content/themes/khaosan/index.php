@@ -135,10 +135,16 @@ get_header();
                                                         $eye_catch = get_post_meta ( $hotel,'hotel_eye_catch', true);
                                                         ?>                                                        
                                                         <img src="<?php echo $eye_catch[1][1];?>">
-                                                        <div class="icon">
-                                                            <img src="<?php echo get_template_directory_uri()?>/img/icon/man.png">
-                                                            <img src="<?php echo get_template_directory_uri()?>/img/icon/couple.png">
-                                                        </div>
+                                                        <?php
+                                                        $services = get_post_meta ( $hotel,'hotel_service', true);
+                                                        if($services != ''){
+                                                            echo '<div class="icon" style="bottom:-3px">';
+                                                            foreach($services[1][1] as $service){
+                                                                echo '<img style="width:49px" src="'.  get_home_url().'/'.$service.'">';
+                                                            }
+                                                            echo '</div>';
+                                                        }
+                                                        ?>
                                                         <div class="hostel_name">
                                                             <?php
                                                             $hotel_name = get_post_meta ( $hotel,'hotel_name', true);

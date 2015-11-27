@@ -50,7 +50,7 @@
         ?>
     </div>
     <?php
-    if($post->post_type !== 'hotel'){
+    if($post->post_type == 'room'){
     ?>
         <!-- icon description -->
         <div class="icon_description_area">
@@ -101,8 +101,9 @@
         while ( $query->have_posts() ) {
             $query->the_post();
             if(wp_get_post_parent_id($x) != get_the_ID()){
+                $rooms = get_posts(array('post_parent' => $query->post->ID,'post_type' => 'room'));
                 $eye_catch = get_post_meta (get_the_ID(),'hotel_eye_catch', true);
-                echo    '<a href="'.  get_home_url().'/?hotel='. $query->post->post_name.'">
+                echo    '<a href="'.  get_home_url().'/?post_type=room&p='. $rooms[0]->ID.'">
                             <div class="other_hostel">
                                 <img src="'.$eye_catch[1][1].'">
                                 <p>
