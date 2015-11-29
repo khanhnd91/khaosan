@@ -107,15 +107,12 @@ get_header();
             <div class="imgbox_back">
                     <div class="imgbox_area">
                         <?php
-                        $cities = get_terms( 'city','hide_empty=0' );
-                        if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
-                            foreach ( $cities as $city ) {
-                        ?>
-                                <?php
-                                $hotels = get_objects_in_term( $city->term_id, 'city');
-                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
-                                    foreach($hotels as $hotel){
-                                        $post = get_post( $hotel );
+                        if ( ! empty( $global_cities )){
+                            $i = 0;
+                            foreach ( $global_cities as $city ) {
+                                $custom_hotels[$i] = $global_hotels[$i];
+                                if ( ! empty( $global_hotels[$i])){
+                                    foreach($global_hotels[$i] as $key => $post){
                                 ?>
                                         <a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>">
                                                 <div class="imgbox">
@@ -132,11 +129,18 @@ get_header();
                                                             <?php echo $city->name ?>
                                                         </div>
                                                         <?php
-                                                        $eye_catch = get_post_meta ( $hotel,'hotel_eye_catch', true);
+                                                        $eye_catch = get_post_meta ( $post->ID,'hotel_eye_catch', true);
+                                                        $custom_hotels[$i][$key]->eye_catch = $eye_catch[1][1];
+                                                        $latitude = get_post_meta ( $post->ID,'hotel_latitude', true);
+                                                        $custom_hotels[$i][$key]->latitude = $latitude[1][1];
+                                                        $longitude = get_post_meta ( $post->ID,'hotel_longitude', true);
+                                                        $custom_hotels[$i][$key]->longitude = $longitude[1][1];
+                                                        $map_text = get_post_meta ( $post->ID,'hotel_map_text', true);
+                                                        $custom_hotels[$i][$key]->map_text = $map_text[1][1];
                                                         ?>                                                        
                                                         <img src="<?php echo $eye_catch[1][1];?>">
                                                         <?php
-                                                        $services = get_post_meta ( $hotel,'hotel_service', true);
+                                                        $services = get_post_meta ( $post->ID,'hotel_service', true);
                                                         if($services != ''){
                                                             echo '<div class="icon" style="bottom:-3px">';
                                                             foreach($services[1][1] as $service){
@@ -147,7 +151,7 @@ get_header();
                                                         ?>
                                                         <div class="hostel_name">
                                                             <?php
-                                                            $hotel_name = get_post_meta ( $hotel,'hotel_name', true);
+                                                            $hotel_name = get_post_meta ( $post->ID,'hotel_name', true);
                                                             echo $hotel_name[1][1];
                                                             ?>
                                                         </div>
@@ -156,6 +160,7 @@ get_header();
                                 <?php
                                     }
                                 }
+                                $i++;
                                 ?>
                         <?php
                             }
@@ -171,44 +176,34 @@ get_header();
                     -->
                     <div id="map_canvas">Loading...</div>
                     <ul>
-                            <li>
-                                    TOKYO
-                                    <ul>
-                                            <li><a href="javascript:map_click(0)">KHAOSAN TOKYOSAMURAI CAPSULE</a></li>
-                                            <li><a href="javascript:map_click(1)">KHAOSAN TOKYO ORIGAMI</a></li>
-                                            <li><a href="javascript:map_click(2)">KHAOSAN WORLD ASAKUSA</a></li>
-                                            <li><a href="javascript:map_click(3)">KHAOSAN TOKYO LABORATORY</a></li>
-                                            <li><a href="javascript:map_click(4)">KHAOSAN TOKYO KABUKI</a></li>
-                                            <li><a href="javascript:map_click(5)">KHAOSAN TOKYO ORIGINAL</a></li>
-                                    </ul>
-                            </li>
-                            <li>
-                                    KYOTO
-                                    <ul>
-                                            <li><a href="javascript:map_click(6)">KHAOSAN KYOTO THEATER</a></li>
-                                            <li><a href="javascript:map_click(7)">KHAOSAN KYOTO GUESTHOUSE</a></li>
-                                    </ul>
-                            </li>
-                            <li>
-                                    SAPPORO
-                                    <ul>
-                                            <li><a href="javascript:map_click(8)">INTERNATIONAL HOSTEL KHAOSAN SAPPORO</a></li>
-                                    </ul>
-                            </li>
+                        <?php
+                        $count = 0;
+                        foreach($global_cities as $i => $city){
+                            echo '<li>';
+                                echo $city->name;
+                                echo '<ul>';
+                                foreach($custom_hotels[$i] as $key => $hotel){
+                                    echo '<li><a href="javascript:map_click('.$count.')">'.$hotel->post_title.'</a></li>';
+                                    $count++;
+                                }
+                                echo '</ul>';
+                            echo '</li>';
+                        }
+                        ?>
                     </ul>
                     <div class="map_text">
-                            <strong>Airport =============== TOKYO/ASAKUSA</strong><br>
-                            <br>
-                            [To/From Narita Airport]<br>
-                            Direct train: 1,240Yen / 60min<br>
-                            Airport Limousine: 2,700JPY / 60-120min<br>
-                            * 1-minute walk to a bus stop from our ryokan/hostel<br>
-                            * 2 buses/day to each directions<br>
-                            <br>
-                            [To/From Haneda Airport]<br>
-                            Direct train: 640Yen / 40min<br>
-                            Airport Limousine: 900JPY / 20-65min<br>
-                            * 1-minute walk to a bus stop from our ryokan/hostel
+                        <strong>Airport =============== TOKYO/ASAKUSA</strong><br>
+                        <br>
+                        [To/From Narita Airport]<br>
+                        Direct train: 1,240Yen / 60min<br>
+                        Airport Limousine: 2,700JPY / 60-120min<br>
+                        * 1-minute walk to a bus stop from our ryokan/hostel<br>
+                        * 2 buses/day to each directions<br>
+                        <br>
+                        [To/From Haneda Airport]<br>
+                        Direct train: 640Yen / 40min<br>
+                        Airport Limousine: 900JPY / 20-65min<br>
+                        * 1-minute walk to a bus stop from our ryokan/hostel
                     </div>
                     <div class="map_arrow">▲</div>
             </div>
@@ -231,7 +226,9 @@ get_footer();
 <script src="<?php echo get_template_directory_uri()?>/js/select2.full.min.js"></script>
 <script src="<?php echo get_template_directory_uri()?>/js/common.js"></script>
 <script>
-        google.maps.event.addDomListener(window, "load", inicializar("<?php echo get_template_directory_uri()?>"));
+        cities = <?php echo json_encode($global_cities);?>;
+        hotels = <?php echo json_encode($custom_hotels);?>;
+        google.maps.event.addDomListener(window, "load", inicializar(cities,hotels));
         
         $(function () {
                 // カルーセル

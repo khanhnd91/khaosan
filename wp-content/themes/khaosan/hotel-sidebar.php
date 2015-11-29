@@ -1,6 +1,4 @@
 <?php
-    $id = get_the_ID();
-    $x = $id;
     $link_hotel = "#";
     $link_room = "#";
     $link_access = "#";
@@ -80,43 +78,37 @@
 
         <!-- other hostel -->
         <?php
-        $city_list = wp_get_post_terms(wp_get_post_parent_id( get_the_ID()), 'city', array("fields" => "all"));
-        foreach($city_list as $city){
-            $term_id = $city->term_id;
+        $cities = wp_get_post_terms(wp_get_post_parent_id( get_the_ID()), 'city', array("fields" => "all"));
+        foreach($cities as $i => $city){
+            foreach($global_cities as $k => $global_city){
+                if($city->term_id == $global_city->term_id){
+                    $scope[$i] = $k;
+                    break;
+                }
+            }
         }
-        wp_reset_postdata();
-        $args = array(
-            'tax_query' => array(
-                array(
-                  'taxonomy' => 'city',
-                  'field' => 'id',
-                  'terms' => array($term_id),
-                )
-            )
-        );
-        $query = new WP_Query( $args );
         ?>
         <div class="other_facilities">
         <?php
-        while ( $query->have_posts() ) {
-            $query->the_post();
-            if(wp_get_post_parent_id($x) != get_the_ID()){
-                $rooms = get_posts(array('post_parent' => $query->post->ID,'post_type' => 'room'));
-                $eye_catch = get_post_meta (get_the_ID(),'hotel_eye_catch', true);
-                echo    '<a href="'.  get_home_url().'/?post_type=room&p='. $rooms[0]->ID.'">
-                            <div class="other_hostel">
-                                <img src="'.$eye_catch[1][1].'">
-                                <p>
-                                    '.$query->post->post_title.'
-                                </p>
-                            </div>
-                        </a>';
+        foreach( $scope as $i ) {
+            foreach($global_hotels[$i] as $hotel){
+                if(wp_get_post_parent_id(get_the_ID()) != $hotel->ID){
+                    $rooms = get_posts(array('post_parent' => $hotel->ID,'post_type' => 'room'));
+                    $eye_catch = get_post_meta ($hotel->ID,'hotel_eye_catch', true);
+                    echo    '<a href="'.  get_home_url().'/?post_type=room&p='. $rooms[0]->ID.'">
+                                <div class="other_hostel">
+                                    <img src="'.$eye_catch[1][1].'">
+                                    <p>
+                                        '.$hotel->post_title.'
+                                    </p>
+                                </div>
+                            </a>';
+                }
             }
         }
         ?>
         </div>
     <?php
-        wp_reset_postdata();
     }
     ?>
 </nav>

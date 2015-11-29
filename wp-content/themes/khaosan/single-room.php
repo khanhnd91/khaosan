@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/style.css">
 <link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/common.css">
 <?php
-get_header(); ?>
+get_header();
+?>
     <!-- main area -->
     <article>
         <?php
@@ -62,7 +63,7 @@ get_header(); ?>
                 </div>
                 <div id="content">
                     <!-- menu area -->
-                    <?php get_template_part('hotel-sidebar');?>
+                    <?php include(locate_template('hotel-sidebar.php'));?>
                     <!-- content -->
                     <div class="detail">
                         <?php

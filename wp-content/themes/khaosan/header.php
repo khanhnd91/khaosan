@@ -23,7 +23,26 @@
 	</style>
 	<?php wp_head(); ?>
 </head>
-
+<?php
+    //create global available
+    global $global_cities;
+    global $global_hotels;
+    $global_cities = get_terms( 'city','hide_empty=0' );
+    if ( ! empty( $global_cities ) && ! is_wp_error( $global_cities ) ){
+        $i = 0;
+        foreach ( $global_cities as $city ) {
+            $hotels = get_objects_in_term( $city->term_id, 'city');
+            if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
+                $k = 0;
+                foreach($hotels as $hotel){
+                    $global_hotels[$i][$k] = get_post( $hotel );
+                    $k++;
+                }
+            }
+            $i++;
+        }
+    }
+?>
   <body onload="initialize();">
 
   <div id="wrapper">
@@ -50,23 +69,22 @@
                                             <a class="toggle" href="#">HOSTEL</a>
                                             <ul class="inner child">
                                             <?php
-                                            $cities = get_terms( 'city','hide_empty=0' );
-                                            if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
-                                                foreach ( $cities as $city ) {
+                                            if (!empty($global_cities)){
+                                                $i = 0;
+                                                foreach ($global_cities as $city) {
                                             ?>
                                                     <li>
                                                             <a class="toggle menu"><?php echo $city->name?></a>
                                                             <ul class="inner child child02">
                                                                 <?php
-                                                                $hotels = get_objects_in_term( $city->term_id, 'city');
-                                                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
-                                                                    foreach($hotels as $hotel){
-                                                                        $post = get_post( $hotel );
+                                                                if (!empty( $global_hotels[$i] )){
+                                                                    foreach($global_hotels[$i] as $hotel){
                                                                 ?>
-                                                                <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>"><?php echo $post->post_title?></a></li>
+                                                                        <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $hotel->post_name?>"><?php echo $hotel->post_title?></a></li>
                                                                 <?php
                                                                     }
                                                                 }
+                                                                $i++;
                                                                 ?>
                                                             </ul>
                                                     </li>
@@ -114,30 +132,29 @@
                                             <a>HOSTEL</a>
                                             <ul class="inner child">
                                             <?php
-                                            $cities = get_terms( 'city','hide_empty=0' );
-                                            if ( ! empty( $cities ) && ! is_wp_error( $cities ) ){
-                                                foreach ( $cities as $city ) {
+                                            if (!empty($global_cities)){
+                                                $i = 0;
+                                                foreach ($global_cities as $city) {
                                             ?>
                                                     <li>
                                                             <a class="toggle menu"><?php echo $city->name?></a>
                                                             <ul class="inner child child02">
                                                                 <?php
-                                                                $hotels = get_objects_in_term( $city->term_id, 'city');
-                                                                if ( ! empty( $hotels ) && ! is_wp_error( $hotels ) ){
-                                                                    foreach($hotels as $hotel){
-                                                                        $post = get_post( $hotel );
+                                                                if (!empty( $global_hotels[$i] )){
+                                                                    foreach($global_hotels[$i] as $hotel){
                                                                 ?>
-                                                                <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $post->post_name?>"><?php echo $post->post_title?></a></li>
+                                                                        <li><a href="<?php echo get_home_url()?>/?hotel=<?php echo $hotel->post_name?>"><?php echo $hotel->post_title?></a></li>
                                                                 <?php
                                                                     }
                                                                 }
+                                                                $i++;
                                                                 ?>
                                                             </ul>
                                                     </li>
                                             <?php
                                                 }
                                             }
-                                            ?>                                                
+                                            ?>                                                 
                                             </ul>
                                     </li>
                                     <li>
