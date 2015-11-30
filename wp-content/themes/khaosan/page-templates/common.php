@@ -19,6 +19,9 @@ get_header();
                 <ul>
                     <?php
                     $thumbnail = get_post_meta ( get_the_ID(),'page_thumbnail', true);
+                    $other_page_link = get_post_meta ( get_the_ID(),'other_page_link', true);
+                    $other_page_title = get_post_meta ( get_the_ID(),'other_page_title', true);
+                    $other_page_icon = get_post_meta ( get_the_ID(),'other_page_icon', true);
                     ?>
                     <li><a href="#1"><img src="<?php echo $thumbnail[1][1];?>" alt=""></a></li>
                 </ul>
@@ -39,12 +42,14 @@ get_header();
             <nav class="hostel">
                 <!-- menu area -->
                 <div class="menu_area">
-                    <div class="arrow" style="top: 22px; left: 12px;">
-                        <img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/arrow.png">
-                    </div>
                     <ul>
-                        <li><img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/top.png">Company Profile</li>
-                        <li><img src="<?php echo get_template_directory_uri()?>/img/menu/hostel/facilities.png">Greeting</li>
+                        <?php
+                        for($i=0;$i<=count($other_page_link);$i++){
+                            if($other_page_link[$i][1]!=''){
+                                echo '<li><a style="color:black" href="'.$other_page_link[$i][1].'"><img src="'.$other_page_icon[$i][1].'">'.$other_page_title[$i][1].'</a></li>';
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </nav>

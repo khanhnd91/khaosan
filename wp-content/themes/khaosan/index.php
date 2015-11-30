@@ -49,6 +49,7 @@ get_header();
             <div id="owl-demo" class="owl-carousel owl-theme">
                 <?php
                 $top = get_posts(array('post_type' => 'top'));
+                $map_text = get_post_meta ($top[0]->ID,'map_text', true);
                 $slide_images = get_post_meta ($top[0]->ID,'slide_image', true);
                 $slide_images_title = get_post_meta ($top[0]->ID,'slide_image_title', true);
                 $slide_images_description = get_post_meta ($top[0]->ID,'slide_image_description', true);
@@ -107,7 +108,6 @@ get_header();
                                                         $custom_hotels[$i][$key]->latitude = $latitude[1][1];
                                                         $longitude = get_post_meta ( $post->ID,'hotel_longitude', true);
                                                         $custom_hotels[$i][$key]->longitude = $longitude[1][1];
-                                                        $map_text = get_post_meta ( $post->ID,'hotel_map_text', true);
                                                         $custom_hotels[$i][$key]->map_text = $map_text[1][1];
                                                         ?>                                                        
                                                         <img src="<?php echo $eye_catch[1][1];?>">
@@ -164,18 +164,7 @@ get_header();
                         ?>
                     </ul>
                     <div class="map_text">
-                        <strong>Airport =============== TOKYO/ASAKUSA</strong><br>
-                        <br>
-                        [To/From Narita Airport]<br>
-                        Direct train: 1,240Yen / 60min<br>
-                        Airport Limousine: 2,700JPY / 60-120min<br>
-                        * 1-minute walk to a bus stop from our ryokan/hostel<br>
-                        * 2 buses/day to each directions<br>
-                        <br>
-                        [To/From Haneda Airport]<br>
-                        Direct train: 640Yen / 40min<br>
-                        Airport Limousine: 900JPY / 20-65min<br>
-                        * 1-minute walk to a bus stop from our ryokan/hostel
+                        <?php echo $map_text[1][1];?>
                     </div>
                     <div class="map_arrow">▲</div>
             </div>

@@ -86,14 +86,16 @@
         <?php
             $count = count($other_hotels_name);
             for($i = 1;$i<=$count;$i++){
-                echo    '<a href="'.$other_hotels_link[$i][1].'" target=’_blank’>
-                            <div class="other_hostel">
-                                <img src="'.$other_hotels_eye_catch[$i][1].'">
-                                <p>
-                                    '.$other_hotels_name[$i][1].'
-                                </p>
-                            </div>
-                        </a>';
+                if($other_hotels_link[$i][1]!==''){
+                    echo    '<a href="'.$other_hotels_link[$i][1].'" target=’_blank’>
+                                <div class="other_hostel">
+                                    <img src="'.$other_hotels_eye_catch[$i][1].'">
+                                    <p>
+                                        '.$other_hotels_name[$i][1].'
+                                    </p>
+                                </div>
+                            </a>';
+                }
             }
         ?>
         </div>
