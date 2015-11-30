@@ -5,7 +5,7 @@ var gmarkers = new google.maps.MarkerImage('img/common/googlemaps/spot.png');/*�
 var i = 0;
 var flg = 0;
 
-function inicializar(cities,hotels) {
+function inicializar(home_url,cities,hotels) {
  if(flg){
       // 初期設定
     var option = {
@@ -37,7 +37,7 @@ function inicializar(cities,hotels) {
       if(hotels[z] !== null){
             for(k=0;k<hotels[z].length;k++){
                 var point = new google.maps.LatLng(hotels[z][k]['latitude'],hotels[z][k]['longitude']);
-                var marker = create_maker(point, hotels[z][k]['post_title'], hotels[z][k]['post_title']+"<br><a href='#' target='_blank'><img src='"+hotels[z][k]['eye_catch']+"' width='180'></a>");
+                var marker = create_maker(point, hotels[z][k]['post_title'], hotels[z][k]['post_title']+"<br><a href='"+home_url+"/?post_type=hotel&p="+hotels[z][k]['ID']+"'><img src='"+hotels[z][k]['eye_catch']+"' width='180'></a>");
             }
           }
       }

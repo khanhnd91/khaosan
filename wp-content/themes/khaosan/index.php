@@ -47,53 +47,25 @@ get_header();
     <article>
             <!-- topimg -->
             <div id="owl-demo" class="owl-carousel owl-theme">
-                    <div class="item">
-                            <img src="<?php echo get_template_directory_uri()?>/img/top/top2.jpg" alt="">
+                <?php
+                $top = get_posts(array('post_type' => 'top'));
+                $slide_images = get_post_meta ($top[0]->ID,'slide_image', true);
+                $slide_images_title = get_post_meta ($top[0]->ID,'slide_image_title', true);
+                $slide_images_description = get_post_meta ($top[0]->ID,'slide_image_description', true);
+                $count = count($slide_images);
+                for($i = 1;$i<=$count;$i++){
+                    echo    
+                    '<div class="item">
+                        <img src="'.$slide_images[$i][1].'" alt="">
                             <div class="top_img_tittle">
-                                    Recruitment Archives
-                                    <p class="top_img_dis">
-                                            We have many staff who come from different countries,<br>
-                                            and they enjoy their life together at Khaosan Tokyo/Kyoto Guest House.
-                                    </p>
+                                '.$slide_images_title[$i][1].'
+                                <p class="top_img_dis">
+                                    '.$slide_images_description[$i][1].'
+                                </p>
                             </div>
-                    </div>
-                    <div class="item">
-                            <img src="<?php echo get_template_directory_uri()?>/img/top/top3.jpg" alt="">
-                            <div class="top_img_tittle">
-                                    KHAOSAN KYOTO GUESTHOUSE
-                                    <p class="top_img_dis">
-                                            No.3 Hostel in Asia 2013 & No.1 Hostel in Japan 2012<br>
-                                            Perfect Location": 1 min from Kawaramachi Sta.<br>
-                                            Convenient Access" to Major Touristic Sights<br>
-                                            6 Beds Mixed/Female Dorm" Recommended<br>
-                                            Tatami Living Room" and Excellent Facilities
-                                    </p>
-                            </div>
-                    </div>
-                    <div class="item">
-                            <img src="<?php echo get_template_directory_uri()?>/img/top/top1.jpg" alt="">
-                            <div class="top_img_tittle">
-                                    KHAOSAN TOKYO ORIGAMI
-                                    <p class="top_img_dis">
-                                            Handicrafts Decorative Hostel<br>
-                                            Amazing city lights ＆ panorama<br>
-                                            Event gallery ＆ cozy common area<br>
-                                            Japanese style private rooms recommended
-                                    </p>
-                            </div>
-                    </div>
-                    <div class="item">
-                            <img src="<?php echo get_template_directory_uri()?>/img/top/khaosan_staff.jpg" alt="">
-                            <div class="top_img_tittle">
-                                    KHAOSAN TOKYOSAMURAI CAPSULE
-                                    <p class="top_img_dis">
-                                            CHA-SHITSU STYLE DORM FOR SAMURAI<br>
-                                            Functional Capsule Style Bed<br>
-                                            Gorgeous Tatami Lounge & Kitchen<br>
-                                            Great location & Fabulous City View
-                                    </p>
-                            </div>
-                    </div>
+                    </div>';
+                }
+                ?>
             </div>
 
             <!-- select -->
@@ -228,7 +200,7 @@ get_footer();
 <script>
         cities = <?php echo json_encode($global_cities);?>;
         hotels = <?php echo json_encode($custom_hotels);?>;
-        google.maps.event.addDomListener(window, "load", inicializar(cities,hotels));
+        google.maps.event.addDomListener(window, "load", inicializar("<?php echo get_home_url();?>",cities,hotels));
         
         $(function () {
                 // カルーセル

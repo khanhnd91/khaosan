@@ -78,34 +78,23 @@
 
         <!-- other hostel -->
         <?php
-        $cities = wp_get_post_terms(wp_get_post_parent_id( get_the_ID()), 'city', array("fields" => "all"));
-        foreach($cities as $i => $city){
-            foreach($global_cities as $k => $global_city){
-                if($city->term_id == $global_city->term_id){
-                    $scope[$i] = $k;
-                    break;
-                }
-            }
-        }
+        $other_hotels_name = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_name', true);
+        $other_hotels_link = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_link', true);
+        $other_hotels_eye_catch = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_eye_catch', true);
         ?>
         <div class="other_facilities">
         <?php
-        foreach( $scope as $i ) {
-            foreach($global_hotels[$i] as $hotel){
-                if(wp_get_post_parent_id(get_the_ID()) != $hotel->ID){
-                    $rooms = get_posts(array('post_parent' => $hotel->ID,'post_type' => 'room'));
-                    $eye_catch = get_post_meta ($hotel->ID,'hotel_eye_catch', true);
-                    echo    '<a href="'.  get_home_url().'/?post_type=room&p='. $rooms[0]->ID.'">
-                                <div class="other_hostel">
-                                    <img src="'.$eye_catch[1][1].'">
-                                    <p>
-                                        '.$hotel->post_title.'
-                                    </p>
-                                </div>
-                            </a>';
-                }
+            $count = count($other_hotels_name);
+            for($i = 1;$i<=$count;$i++){
+                echo    '<a href="'.$other_hotels_link[$i][1].'" target=’_blank’>
+                            <div class="other_hostel">
+                                <img src="'.$other_hotels_eye_catch[$i][1].'">
+                                <p>
+                                    '.$other_hotels_name[$i][1].'
+                                </p>
+                            </div>
+                        </a>';
             }
-        }
         ?>
         </div>
     <?php

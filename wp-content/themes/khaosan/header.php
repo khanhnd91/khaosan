@@ -42,9 +42,9 @@
             $i++;
         }
     }
+    $recent_post = wp_get_recent_posts(array('numberposts' => 1,'post_status' => 'publish'));
 ?>
   <body onload="initialize();">
-
   <div id="wrapper">
 
      <!-- header -->
@@ -95,7 +95,7 @@
                                             </ul>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">BLOG</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
                                             <a class="toggle" href="#">STAFF</a>
@@ -158,7 +158,7 @@
                                             </ul>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">BLOG</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
                                             <a class="toggle" href="#">STAFF</a>

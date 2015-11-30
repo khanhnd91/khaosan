@@ -5,16 +5,22 @@
 <link rel="stylesheet" href="<?php echo get_template_directory_uri()?>/css/common.css">
 <?php
 /**
- * Template Name: about
+ * Template Name: common
  */
 get_header();
 ?>
     <article>
+        <?php
+        while ( have_posts() ) : the_post();
+        ?>
         <!-- topimg -->
         <div class="flickSlider">
             <div class="flickView">
                 <ul>
-                    <li><a href="#1"><img src="<?php echo get_template_directory_uri()?>/img/top/about_top.jpg" alt=""></a></li>
+                    <?php
+                    $thumbnail = get_post_meta ( get_the_ID(),'page_thumbnail', true);
+                    ?>
+                    <li><a href="#1"><img src="<?php echo $thumbnail[1][1];?>" alt=""></a></li>
                 </ul>
             </div><!--/.flickView-->
         </div><!--/.flickSlider-->
@@ -22,7 +28,7 @@ get_header();
         <div id="hostel_tittle">
             <div class="tittle_text">
                 <p>
-                    ABOUT
+                    <?php the_title();?>
                 </p>
                 <span>subtitle</span>
             </div>
@@ -45,14 +51,15 @@ get_header();
 
             <!-- content -->
             <div class="detail">
-                <div class="detail_tittle">
-                    Company Profile
-                </div>
-                <div class="detail_text">
-                ******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
-                </div>
+            <?php
+                the_content();
+            ?>
             </div>
         </div>
+        <?php
+        endwhile;
+        ?>
+    </article>
 
         <!-- other -->
         <?php get_template_part( 'other' );?>
