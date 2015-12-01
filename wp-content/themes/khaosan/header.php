@@ -27,7 +27,7 @@
     //create global available
     global $global_cities;
     global $global_hotels;
-    $global_cities = get_terms( 'city','hide_empty=0' );
+    $global_cities = get_terms( 'city',array('hide_empty' => false, 'orderby' => 'slug') );
     if ( ! empty( $global_cities ) && ! is_wp_error( $global_cities ) ){
         $i = 0;
         foreach ( $global_cities as $city ) {
@@ -39,6 +39,11 @@
                     $k++;
                 }
             }
+            foreach ($global_hotels[$i] as $key => $item)
+            {
+                $post_title[$key] = $item->post_title;
+            }
+            array_multisort($post_title, SORT_ASC, $global_hotels[$i]);
             $i++;
         }
     }
@@ -98,16 +103,16 @@
                                             <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">STAFF</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/staff">STAFF</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">RECRUITMENT</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/recruitment">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">Q&A</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/q&a">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">CAR RENTAL</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/carrental">CAR RENTAL</a>
                                             <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">
@@ -126,7 +131,7 @@
                                             <a href="#">TOP</a>
                                     </li>
                                     <li>
-                                            <a href="#">ABOUT</a>
+                                            <a href="<?php echo get_home_url()?>/about">ABOUT</a>
                                     </li>
                                     <li>
                                             <a>HOSTEL</a>
@@ -161,16 +166,16 @@
                                             <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">STAFF</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/staff">STAFF</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">RECRUITMENT</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/recruitment">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">Q&A</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/q&a">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">CAR RENTAL</a>
+                                            <a class="toggle" href="<?php echo get_home_url()?>/carrental">CAR RENTAL</a>
                                             <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">

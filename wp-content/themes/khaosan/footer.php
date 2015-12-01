@@ -26,19 +26,19 @@
 	<footer>
 		<div class="footer_contents">
 			<div class="footer_menu">
-				<a href="#">
+				<a href="<?php echo get_home_url()?>/about">
 					<p>ABOUT</p>
 				</a>
-				<a href="#">
+				<a href="<?php echo get_home_url()?>/staff">
 					<p>STAFF</p>
 				</a>
-				<a href="#">
+				<a href="<?php echo get_home_url()?>/recruitment">
 					<p>RECRUITMENT</p>
 				</a>
-				<a href="#">
+				<a href="<?php echo get_home_url()?>/q&a">
 					<p>Q&A</p>
 				</a>
-				<a href="#">
+				<a href="<?php echo get_home_url()?>/carrental">
 					<p>CAR RENTAL</p>
 				</a>
 			</div>
