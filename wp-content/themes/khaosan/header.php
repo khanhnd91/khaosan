@@ -39,11 +39,13 @@
                     $k++;
                 }
             }
-            foreach ($global_hotels[$i] as $key => $item)
-            {
-                $post_title[$key] = $item->post_title;
+            if(!empty($global_hotels[$i])){
+                foreach ($global_hotels[$i] as $key => $item)
+                {
+                    $post_title[$key] = $item->post_title;
+                }
+                array_multisort($post_title, SORT_ASC, $global_hotels[$i]);
             }
-            array_multisort($post_title, SORT_ASC, $global_hotels[$i]);
             $i++;
         }
     }

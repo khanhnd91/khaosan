@@ -154,9 +154,11 @@ get_header();
                             echo '<li>';
                                 echo $city->name;
                                 echo '<ul>';
-                                foreach($custom_hotels[$i] as $key => $hotel){
-                                    echo '<li><a href="javascript:map_click('.$count.')">'.$hotel->post_title.'</a></li>';
-                                    $count++;
+                                if(!empty($custom_hotels[$i])){
+                                    foreach($custom_hotels[$i] as $key => $hotel){
+                                        echo '<li><a href="javascript:map_click('.$count.')">'.$hotel->post_title.'</a></li>';
+                                        $count++;
+                                    }
                                 }
                                 echo '</ul>';
                             echo '</li>';
