@@ -63,7 +63,7 @@ $cat = $wp_query->query_vars['cat'];
                                 'echo'            => 1,
                                 'order'           => 'DESC'
                             );
-                            wp_get_archives( $args )
+                            wp_get_archives( $args );
                             ?>
                         </div>
                     </nav>

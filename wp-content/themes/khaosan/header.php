@@ -16,11 +16,6 @@
             <meta name="rating" content="Worldwide">
         <meta name="author" content="khaosan Guest House">
         <meta name="copyright" content="khaosan Guest House">
-        <style>
-		article {
-			background: rgba(0, 0, 0, 0) url("<?php echo get_template_directory_uri()?>/img/nami.png") repeat scroll 0 0 / 50% auto;
-		}
-	</style>
 	<?php wp_head(); ?>
 </head>
 <?php
@@ -43,14 +38,32 @@
                 foreach ($global_hotels[$i] as $key => $item)
                 {
                     $post_title[$key] = $item->post_title;
+                    $order = get_post_meta ( $item->ID,'hotel_order', true);
+                    $hotel_order[$key] = $order[1][1];
                 }
-                array_multisort($post_title, SORT_ASC, $global_hotels[$i]);
+                array_multisort($hotel_order,SORT_ASC,$post_title, SORT_ASC, $global_hotels[$i]);
             }
             $i++;
         }
     }
     $recent_post = wp_get_recent_posts(array('numberposts' => 1,'post_status' => 'publish'));
+    $top = get_posts(array('post_type' => 'top'));
+    $about_link = get_post_meta ($top[0]->ID,'about_link', true);
+    $staff_link = get_post_meta ($top[0]->ID,'staff_link', true);
+    $qa_link = get_post_meta ($top[0]->ID,'qa_link', true);
+    $recruitment_link = get_post_meta ($top[0]->ID,'recruitment_link', true);
+    $car_rental_link = get_post_meta ($top[0]->ID,'car_rental_link', true);
+    $fb_link = get_post_meta ($top[0]->ID,'fb_link', true);
+    $twitter_link = get_post_meta ($top[0]->ID,'twitter_link', true);
+    $google_plus_link = get_post_meta ($top[0]->ID,'google_plus_link', true);
+    $pin_link = get_post_meta ($top[0]->ID,'pin_link', true);
+    $background_image = get_post_meta ($top[0]->ID,'background_image', true);
 ?>
+    <style>
+            article {
+                    background: rgba(0, 0, 0, 0) <?php if(!empty($background_image[1][1])){ echo 'url("'.$background_image[1][1].'")';}?> repeat scroll 0 0 / 50% auto;
+            }
+    </style>
   <body onload="initialize();">
   <div id="wrapper">
 
@@ -70,7 +83,7 @@
                     <div id="desktop_menu">
                             <ul id="toggle">
                                     <li>
-                                        <a class="toggle" href="<?php echo get_home_url()?>/about">ABOUT</a>
+                                        <a class="toggle" href="<?php echo $about_link[1][1];?>">ABOUT</a>
                                     </li>
                                     <li>
                                             <a class="toggle" href="#">HOSTEL</a>
@@ -105,23 +118,23 @@
                                             <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/staff">STAFF</a>
+                                            <a class="toggle" href="<?php echo $staff_link[1][1];?>">STAFF</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/recruitment">RECRUITMENT</a>
+                                            <a class="toggle" href="<?php echo $recruitment_link[1][1];?>">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/q&a">Q&A</a>
+                                            <a class="toggle" href="<?php echo $qa_link[1][1];?>">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/carrental">CAR RENTAL</a>
-                                            <ul class="inner child">
+                                            <a class="toggle" href="<?php echo $car_rental_link[1][1];?>">CAR RENTAL</a>
+<!--                                            <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">
                                                                     <li><a href="">COMING SOON</a></li>
                                                             </ul>
                                                     </li>
-                                            </ul>
+                                            </ul>-->
                                     </li>
                             </ul>
                     </div>
@@ -133,7 +146,7 @@
                                             <a href="#">TOP</a>
                                     </li>
                                     <li>
-                                            <a href="<?php echo get_home_url()?>/about">ABOUT</a>
+                                            <a href="<?php echo $about_link[1][1];?>">ABOUT</a>
                                     </li>
                                     <li>
                                             <a>HOSTEL</a>
@@ -168,23 +181,23 @@
                                             <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/staff">STAFF</a>
+                                            <a class="toggle" href="<?php echo $staff_link[1][1];?>">STAFF</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/recruitment">RECRUITMENT</a>
+                                            <a class="toggle" href="<?php echo $recruitment_link[1][1];?>">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/q&a">Q&A</a>
+                                            <a class="toggle" href="<?php echo $qa_link[1][1];?>">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/carrental">CAR RENTAL</a>
-                                            <ul class="inner child">
+                                            <a class="toggle" href="<?php echo $car_rental_link[1][1];?>">CAR RENTAL</a>
+<!--                                            <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">
                                                                     <li><a href="">COMING SOON</a></li>
                                                             </ul>
                                                     </li>
-                                            </ul>
+                                            </ul>-->
                                     </li>
                             </ul>
                     </nav>

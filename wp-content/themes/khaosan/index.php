@@ -53,18 +53,21 @@ get_header();
                 $slide_images = get_post_meta ($top[0]->ID,'slide_image', true);
                 $slide_images_title = get_post_meta ($top[0]->ID,'slide_image_title', true);
                 $slide_images_description = get_post_meta ($top[0]->ID,'slide_image_description', true);
+                $slide_images_link = get_post_meta ($top[0]->ID,'slide_image_link', true);
                 $count = count($slide_images);
                 for($i = 1;$i<=$count;$i++){
                     echo    
-                    '<div class="item">
-                        <img src="'.$slide_images[$i][1].'" alt="">
-                            <div class="top_img_tittle">
-                                '.$slide_images_title[$i][1].'
-                                <p class="top_img_dis">
-                                    '.$slide_images_description[$i][1].'
-                                </p>
-                            </div>
-                    </div>';
+                    '<a href="'.$slide_images_link[$i][1].'" target="_blank">
+                        <div class="item">
+                            <img src="'.$slide_images[$i][1].'" alt="">
+                                <div class="top_img_tittle">
+                                    '.$slide_images_title[$i][1].'
+                                    <p class="top_img_dis">
+                                        '.$slide_images_description[$i][1].'
+                                    </p>
+                                </div>
+                        </div>
+                    </a>';
                 }
                 ?>
             </div>
@@ -92,11 +95,7 @@ get_header();
                                                         <div class="area"
                                                              style="background:
                                                                 <?php
-                                                                    if($city->name == 'KYOTO') echo "#8C8C00";
-                                                                    else if($city->name == 'SAPPORO') echo "#003366"; 
-                                                                    else if($city->name == 'ATAMI') echo "#D96D00"; 
-                                                                    else if($city->name == 'KANAZAWA') echo "#004D14"; 
-                                                                    else echo "#ff4d4d";
+                                                                    echo $city->description;
                                                                 ?>"
                                                         >
                                                             <?php echo $city->name ?>
@@ -110,13 +109,13 @@ get_header();
                                                         $custom_hotels[$i][$key]->longitude = $longitude[1][1];
                                                         $custom_hotels[$i][$key]->map_text = $map_text[1][1];
                                                         ?>                                                        
-                                                        <img src="<?php echo $eye_catch[1][1];?>">
+                                                        <img style= "height:100%" src="<?php echo $eye_catch[1][1];?>">
                                                         <?php
                                                         $services = get_post_meta ( $post->ID,'hotel_service', true);
                                                         if($services != ''){
-                                                            echo '<div class="icon" style="bottom:-3px">';
+                                                            echo '<div class="icon">';
                                                             foreach($services[1][1] as $service){
-                                                                echo '<img style="width:49px" src="'.  get_home_url().'/'.$service.'">';
+                                                                echo '<img src="'.  get_home_url().'/'.$service.'">';
                                                             }
                                                             echo '</div>';
                                                         }

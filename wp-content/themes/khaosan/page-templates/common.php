@@ -44,13 +44,35 @@ get_header();
                 <div class="menu_area">
                     <ul>
                         <?php
-                        for($i=0;$i<=count($other_page_link);$i++){
+                        for($i=1;$i<=count($other_page_link);$i++){
                             if($other_page_link[$i][1]!=''){
                                 echo '<li><a style="color:black" href="'.$other_page_link[$i][1].'"><img src="'.$other_page_icon[$i][1].'">'.$other_page_title[$i][1].'</a></li>';
                             }
                         }
                         ?>
                     </ul>
+                </div>
+                <?php
+                $banner_title= get_post_meta (get_the_ID(),'banner_title', true);
+                $banner_link = get_post_meta ( get_the_ID(),'banner_link', true);
+                $banner_eye_catch = get_post_meta ( get_the_ID(),'banner_eye_catch', true);    
+                ?>
+                <div class="other_facilities">
+                <?php
+                    $count = count($banner_link);
+                    for($i = 1;$i<=$count;$i++){
+                        if($banner_link[$i][1]!=''){
+                            echo    '<a href="'.$banner_link[$i][1].'" target=’_blank’>
+                                        <div class="other_hostel">
+                                            <img src="'.$banner_eye_catch[$i][1].'">
+                                            <p>
+                                                '.$banner_title[$i][1].'
+                                            </p>
+                                        </div>
+                                    </a>';
+                        }
+                    }
+                ?>
                 </div>
             </nav>
 

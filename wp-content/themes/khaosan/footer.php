@@ -24,35 +24,47 @@
             ?>
         </div>
 	<footer>
+        <?php
+        $top = get_posts(array('post_type' => 'top'));
+        $about_link = get_post_meta ($top[0]->ID,'about_link', true);
+        $staff_link = get_post_meta ($top[0]->ID,'staff_link', true);
+        $qa_link = get_post_meta ($top[0]->ID,'qa_link', true);
+        $recruitment_link = get_post_meta ($top[0]->ID,'recruitment_link', true);
+        $car_rental_link = get_post_meta ($top[0]->ID,'car_rental_link', true);
+        $fb_link = get_post_meta ($top[0]->ID,'fb_link', true);
+        $twitter_link = get_post_meta ($top[0]->ID,'twitter_link', true);
+        $google_plus_link = get_post_meta ($top[0]->ID,'google_plus_link', true);
+        $pin_link = get_post_meta ($top[0]->ID,'pin_link', true);        
+        ?>
 		<div class="footer_contents">
 			<div class="footer_menu">
-				<a href="<?php echo get_home_url()?>/about">
+				<a href="<?php echo $about_link[1][1];?>">
 					<p>ABOUT</p>
 				</a>
-				<a href="<?php echo get_home_url()?>/staff">
+				<a href="<?php echo $staff_link[1][1];?>">
 					<p>STAFF</p>
 				</a>
-				<a href="<?php echo get_home_url()?>/recruitment">
+				<a href="<?php echo $recruitment_link[1][1];?>">
 					<p>RECRUITMENT</p>
 				</a>
-				<a href="<?php echo get_home_url()?>/q&a">
+				<a href="<?php echo $qa_link[1][1];?>">
 					<p>Q&A</p>
 				</a>
-				<a href="<?php echo get_home_url()?>/carrental">
+				<a href="<?php echo $car_rental_link[1][1];?>">
 					<p>CAR RENTAL</p>
 				</a>
 			</div>
 			<div class="footer_sns">
-				<a href="#">
+				<a href="<?php echo $fb_link[1][1];?>">
 					<img src="<?php echo get_template_directory_uri()?>/img/menu/facebook.png">
 				</a>
-				<a href="#">
+				<a href="<?php echo $twitter_link[1][1];?>">
 					<img src="<?php echo get_template_directory_uri()?>/img/menu/twitter.png">
 				</a>
-				<a href="#">
+				<a href="<?php echo $google_plus_link[1][1];?>">
 					<img src="<?php echo get_template_directory_uri()?>/img/menu/google_plus.png">
 				</a>
-				<a href="#">
+				<a href="<?php echo $pin_link[1][1];?>">
 					<img src="<?php echo get_template_directory_uri()?>/img/menu/pin.png">
 				</a>
 			</div>
