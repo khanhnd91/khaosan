@@ -54,6 +54,7 @@ get_header();
                 $slide_images_title = get_post_meta ($top[0]->ID,'slide_image_title', true);
                 $slide_images_description = get_post_meta ($top[0]->ID,'slide_image_description', true);
                 $slide_images_link = get_post_meta ($top[0]->ID,'slide_image_link', true);
+                $hotel_icon_background_color = get_post_meta ($top[0]->ID,'hotel_icon_background_color', true);
                 $count = count($slide_images);
                 for($i = 1;$i<=$count;$i++){
                     echo    
@@ -115,7 +116,11 @@ get_header();
                                                         if($services != ''){
                                                             echo '<div class="icon">';
                                                             foreach($services[1][1] as $service){
-                                                                echo '<img src="'.  get_home_url().'/'.$service.'">';
+                                                                $style = '';
+                                                                if($hotel_icon_background_color[1][1]!=''){
+                                                                    $style.= 'background:'.$hotel_icon_background_color[1][1];
+                                                                }
+                                                                echo '<img style = "'.$style.'" src="'.  get_home_url().'/'.$service.'">';
                                                             }
                                                             echo '</div>';
                                                         }

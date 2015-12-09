@@ -15,8 +15,7 @@
                         <div class="news_title"><?php echo $item->post_title;?></div>
                         <div class="content">
                             <?php
-                            $description = get_post_meta ( $item->ID,'news_description', true);
-                            echo $description[1][1];
+                            echo $item->post_content;
                             ?>
                         </div>
                     </div>
