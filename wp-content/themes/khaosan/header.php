@@ -211,6 +211,19 @@
                                     </li>
                             </ul>
                     </nav>
-            </div>
+                    <div>
+                        <span style="font-size:10px; font-weight:bold;">LANGUAGE</span>&nbsp;
+                        <?php
+                        $language_name = get_post_meta ($top[0]->ID,'language_name', true);
+                        $language_image = get_post_meta ($top[0]->ID,'language_image', true);       
+                        $language_link = get_post_meta ($top[0]->ID,'language_link', true);
+                        for($i = 1; $i<= count($language_link); $i++){
+                        ?>
+                            <a href="<?php echo $language_link[$i][1]; ?>"><img src="<?php echo $language_image[$i][1]; ?>" width="40" height="24" alt="Khaosan Tokyo Hostel (<?php echo $language_name[$i][1]; ?>)"></a>
+                        <?php
+                        }
+                        ?>
+                    </div>
+        </div>
     </header>
 
