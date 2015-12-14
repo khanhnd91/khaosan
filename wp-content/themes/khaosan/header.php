@@ -160,15 +160,15 @@
                                     </li>
                                     <li>
                                             <a>HOSTEL</a>
-                                            <ul class="inner child">
+                                            <ul>
                                             <?php
                                             if (!empty($global_cities)){
                                                 $i = 0;
                                                 foreach ($global_cities as $city) {
                                             ?>
                                                     <li>
-                                                            <a class="toggle menu"><?php echo $city->name?></a>
-                                                            <ul class="inner child child02">
+                                                            <a><?php echo $city->name?></a>
+                                                            <ul>
                                                                 <?php
                                                                 if (!empty( $global_hotels[$i] )){
                                                                     foreach($global_hotels[$i] as $hotel){
@@ -207,23 +207,32 @@
                                                                     <li><a href="">COMING SOON</a></li>
                                                             </ul>
                                                     </li>
-                                            </ul>-->
+                                            </ul> -->
                                     </li>
                             </ul>
                     </nav>
-                    <div>
-                        <span style="font-size:10px; font-weight:bold;">LANGUAGE</span>&nbsp;
-                        <?php
-                        $language_name = get_post_meta ($top[0]->ID,'language_name', true);
-                        $language_image = get_post_meta ($top[0]->ID,'language_image', true);       
-                        $language_link = get_post_meta ($top[0]->ID,'language_link', true);
-                        for($i = 1; $i<= count($language_link); $i++){
-                        ?>
-                            <a href="<?php echo $language_link[$i][1]; ?>"><img src="<?php echo $language_image[$i][1]; ?>" width="40" height="24" alt="Khaosan Tokyo Hostel (<?php echo $language_name[$i][1]; ?>)"></a>
-                        <?php
-                        }
-                        ?>
                     </div>
-        </div>
+                    <!-- lang -->
+                    <nav>
+                        <ul>
+                            <li class="menu-item-has-children">English
+                                <a href="#">▼</a>
+                                <ul class="sub-menu">
+                                    <?php
+                                    $language_name = get_post_meta ($top[0]->ID,'language_name', true);
+                                    $language_image = get_post_meta ($top[0]->ID,'language_image', true);       
+                                    $language_link = get_post_meta ($top[0]->ID,'language_link', true);
+                                    for($i = 1; $i<= count($language_link); $i++){
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $language_link[$i][1];?>"><?php echo $language_name[$i][1];?></a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
     </header>
 

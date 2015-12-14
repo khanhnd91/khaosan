@@ -133,6 +133,92 @@ header {
     width: 124px;
 }
 
+/* サブメニュー */
+.menu-item-has-children {
+    position: fixed;
+    right: 40px;
+    top: 20px;
+}
+
+nav > ul > li {
+  list-style: outside none none;
+  padding: 0 15px;
+  position: relative;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 100;
+}
+nav ul li ul {
+  list-style: outside none none;
+  background: #c8cc5c none repeat scroll 0 0;
+  padding: 0;
+  font-size: 12px;
+}
+nav a {
+  text-decoration: none;
+}
+nav .sub-menu {
+  transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  background: #fff none repeat scroll 0 0;
+  border-radius: 6px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+  list-style: outside none none;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  visibility: hidden;
+  width: 284px;
+}
+nav .sub-menu a {
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+    text-align: center;
+    width: 265px;
+    color: #444;
+    height: auto;
+}
+
+nav .sub-menu li ul {
+  overflow: auto;
+  height: 298px;
+}
+
+nav .sub-menu li ul li a {
+  padding:5px;
+
+}
+.menu-item-has-children a {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    position: relative;
+    top: 0;
+    float: right;
+    width: auto;
+    left: 0;
+}
+
+nav .sub-menu li ul {
+    height: 298px;
+    overflow: auto;
+}
+nav .sub-menu li ul li a {
+    padding: 5px;
+}
+nav .menu-item-has-children:hover ul {
+    opacity: 1;
+    visibility: visible;
+}
+nav li.menu-item-has-children li a:hover {
+    background: #f6f6f6 none repeat scroll 0 0;
+}
+
 header a {
   background: center center no-repeat transparent;
   /*background-image: url( data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADhJREFUeNpi/P//PwOtARMDHQBdLGFBYtMq3BiHT3DRPU4YR4NrNAmPJuHRJDyahEeT8Ii3BCDAAF0WBj5Er5idAAAAAElFTkSuQmCC );*/
@@ -144,12 +230,6 @@ header a {
   position: absolute;
   top: 32px;
   left: 80px;
-}
-
-@media screen and (max-width: 567px) {
-  header {height: 54px; }
-  header a {top: 5px; background-size:62px; width: 62px;} 
-  header img {width: 60px; padding-top: 6px;}
 }
 
 .tab {
@@ -247,6 +327,15 @@ button img {
   display: none;
 }
 
+@media screen and (max-width: 567px) {
+  header {height: 54px; }
+  header a {top: 5px; background-size:62px; width: 62px;} 
+  header img {width: 60px; padding-top: 6px;}
+  .logo {margin-left: 0;}
+  .menu-item-has-children {right: 0; top: 24px; padding: 0 6px;}
+  nav .sub-menu {width: 100%; position: fixed; top: 70px;}
+  nav .sub-menu a {width: 100%;}
+}
 
 
 
@@ -2791,7 +2880,7 @@ select > option {
   .minict_wrapper {width: 100%;}
   #button_area form {position: static; width: 80%;}
   #button_area input {margin: auto;}
-  #button_area input.search {position: relative; top: 0; border-radius: 0; height: auto; width: 100%; margin: 12px auto;}
+  #button_area input.search {position: relative; top: 0; border-radius: 0; height: 50px; width: 100%; margin: 12px auto;}
   #button_area input.date {position: relative; top: 0; width: 100% !important; padding: 9px 32px 12px 10px; text-align: center;}
   .select2.select2-container.select2-container--default { width: 100% !important;}
 }
