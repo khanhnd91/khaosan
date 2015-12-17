@@ -51,7 +51,8 @@
                     $order = get_post_meta ( $item->ID,'hotel_order', true);
                     $hotel_order[$key] = $order[1][1];
                 }
-                array_multisort($hotel_order,SORT_ASC,$post_title, SORT_ASC, $global_hotels[$i]);
+                array_multisort($hotel_order, $global_hotels[$i]);
+                unset($hotel_order);
             }
             $i++;
         }
@@ -83,6 +84,29 @@
                     <div class="header">
                             <a href="#menu"></a>
                     </div>
+
+                    <!-- lang -->
+                    <nav>
+                        <ul class="lang-menu">
+                            <li class="menu-item-has-children">English
+                                <a href="#">▼</a>
+                                <ul class="sub-menu">
+                                    <?php
+                                    $language_name = get_post_meta ($top[0]->ID,'language_name', true);
+                                    $language_image = get_post_meta ($top[0]->ID,'language_image', true);       
+                                    $language_link = get_post_meta ($top[0]->ID,'language_link', true);
+                                    for($i = 1; $i<= count($language_link); $i++){
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $language_link[$i][1];?>"><?php echo $language_name[$i][1];?></a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
 
                     <!-- logo -->
                     <div class="logo">
@@ -150,6 +174,7 @@
                     </div>
 
                     <!-- spn_menu -->
+
                     <nav id="menu">
                             <ul>
                                     <li>
@@ -212,27 +237,5 @@
                             </ul>
                     </nav>
                     </div>
-                    <!-- lang -->
-                    <nav>
-                        <ul>
-                            <li class="menu-item-has-children">English
-                                <a href="#">▼</a>
-                                <ul class="sub-menu">
-                                    <?php
-                                    $language_name = get_post_meta ($top[0]->ID,'language_name', true);
-                                    $language_image = get_post_meta ($top[0]->ID,'language_image', true);       
-                                    $language_link = get_post_meta ($top[0]->ID,'language_link', true);
-                                    for($i = 1; $i<= count($language_link); $i++){
-                                    ?>
-                                        <li>
-                                            <a href="<?php echo $language_link[$i][1];?>"><?php echo $language_name[$i][1];?></a>
-                                        </li>
-                                    <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
     </header>
 

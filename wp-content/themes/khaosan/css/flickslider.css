@@ -4,7 +4,7 @@
 /* .flickSlider
 --------------------------- */
 .flickSlider {
-    margin: 0 auto;
+    margin: 10px auto;
     text-align: left;
     display: none;
     padding: 45px 0;
@@ -17,6 +17,7 @@
     text-align: left;
     position: relative;
     overflow: hidden;
+    max-height: 550px !important;
 }
 .flickSlider .flickView ul {
     top: 0;
@@ -56,6 +57,9 @@
     filter:alpha(opacity=100)!important;
     -moz-opacity: 1!important;
     opacity: 1!important;
+}
+.flickThumb {
+    display: none;
 }
  
 /* sideNavi

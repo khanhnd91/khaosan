@@ -5,7 +5,7 @@ html,body {
   margin: 0;
   padding: 0;
   background-image: url(../img/common/bg.png);
-  background: #000;
+  background: #f1f1f1;
   font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif;
   height: 100%;
 }
@@ -46,13 +46,13 @@ p a {
 
 /* ヘッダーエリア */
 header {
-  background: #000 none repeat scroll 0 0;
-  border-bottom: 1px solid #d4d4d4;
-  height: 60px;
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  top: 0;
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #d4d4d4;
+    height: 60px;
+    position: fixed;
+    top: 32px;
+    width: 100%;
+    z-index: 9999;
 }
 
 #desktop_menu > ul {
@@ -61,11 +61,11 @@ header {
 
 #desktop_menu li {
     float: left;
-    height: 28px;
+    min-height: 28px;
     left: 120px;
     padding: 0 10px;
     position: relative;
-    top: -32px;
+    top: -38px;
     width: auto;
     z-index: 99999;
     color: #fff;
@@ -115,6 +115,10 @@ header {
     width: auto;
 }
 
+.inner.child a:hover {
+    color: #e20000;
+}
+
 .toggle {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     float: left;
@@ -135,9 +139,20 @@ header {
 
 /* サブメニュー */
 .menu-item-has-children {
+    color: #fff;
+    float: right;
+    margin-right: auto;
+    padding: 5px;
+    width: 120px;
+}
+
+.lang-menu {
+    background: #bd0000 none repeat scroll 0 0;
     position: fixed;
-    right: 40px;
-    top: 20px;
+    right: 0;
+    text-align: right;
+    top: -16px;
+    width: 100%;
 }
 
 nav > ul > li {
@@ -145,7 +160,7 @@ nav > ul > li {
   padding: 0 15px;
   position: relative;
   font-size: 14px;
-  color: #fff;
+  color: #444;
   font-weight: 100;
 }
 nav ul li ul {
@@ -197,11 +212,14 @@ nav .sub-menu li ul li a {
 }
 .menu-item-has-children a {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #fff;
+    float: right;
+    height: auto;
+    left: 0;
+    margin: 0 10px;
     position: relative;
     top: 0;
-    float: right;
     width: auto;
-    left: 0;
 }
 
 nav .sub-menu li ul {
@@ -230,6 +248,7 @@ header a {
   position: absolute;
   top: 32px;
   left: 80px;
+  color: #444;
 }
 
 .tab {
@@ -332,8 +351,7 @@ button img {
   header a {top: 5px; background-size:62px; width: 62px;} 
   header img {width: 60px; padding-top: 6px;}
   .logo {margin-left: 0;}
-  .menu-item-has-children {right: 0; top: 24px; padding: 0 6px;}
-  nav .sub-menu {width: 100%; position: fixed; top: 70px;}
+  nav .sub-menu {width: 100%; position: fixed;}
   nav .sub-menu a {width: 100%;}
 }
 
@@ -1390,7 +1408,8 @@ button img {
 }
 
 .map > ul {
-    background: #444 none repeat scroll 0 0;
+    border: 3px solid #bd0000;
+    color: #444;
     float: left;
     left: 20px;
     line-height: 28px;
@@ -1400,12 +1419,12 @@ button img {
     position: relative;
     top: -10px;
     width: 300px;
-    color: #fff;
 }
+
 
 .map li ul li {
     font-size: 14px;
-    color: #999;
+    color: #bd0000;
 }
 
 .map li ul li:hover {
@@ -1413,7 +1432,7 @@ button img {
 }
 
 .map a {
-    color: #999;
+    color: #bd0000;
 }
 
 .map a:hover {
@@ -2923,7 +2942,7 @@ select > option {
 }
 
 .imgbox_back {
-    background: #222 none repeat scroll 0 0;
+    background: #fff none repeat scroll 0 0;
     overflow: hidden;
     padding-top: 80px;
     position: relative;
@@ -2941,9 +2960,10 @@ select > option {
 .imgbox {
     float: left;
     margin: 10px;
-    max-height: 284px;
+    height: 284px;
     width: 30%;
     position: relative;
+    overflow: hidden;
 }
 
 .imgbox:hover {
@@ -2979,7 +2999,7 @@ select > option {
 }
 
 .icon {
-    bottom: -9px;
+    bottom: 0;
     overflow: hidden;
     position: absolute;
     text-align: right;
@@ -3048,7 +3068,6 @@ a:hover .textbox {
 
 .map_text {
     background: #005454 none repeat scroll 0 0;
-    clear: both;
     color: #fff;
     font-size: 12px;
     margin-bottom: 80px;
@@ -3067,7 +3086,7 @@ a:hover .textbox {
 }
 
 .news_area {
-    background-color: #ccc;
+    background-color: #ddd;
     position: relative;
     top: -80px;
     width: 100%;
@@ -3259,7 +3278,7 @@ a:hover .textbox {
     color: #000;
     font-size: 18px;
     font-weight: 600;
-    margin: 0 0 10px;
+    margin: 40px 0 10px;
     padding: 5px 10px;
 }
 
@@ -3267,10 +3286,10 @@ a:hover .textbox {
     background: #fff none repeat scroll 0 0;
     border-radius: 10px;
     font-size: 14px;
-    margin: 0 14px 40px;
+    margin: 0 14px 10px;
+    overflow: hidden;
     padding: 20px;
     word-wrap: break-word;
-    overflow: hidden;
 }
 
 .detail_text > img {
@@ -3292,13 +3311,13 @@ a:hover .textbox {
 .facilities_box {
     float: left;
     margin: 5px;
-    min-height: 200px;
+    min-height: 225px;
     overflow: hidden;
     width: 30%;
 }
 
 .facilities_img {
-    max-height: 120px;
+    height: auto;
     overflow: hidden;
 }
 
@@ -3414,10 +3433,10 @@ a:hover .textbox {
   .icon_description {width: 14%;}
 
   .menu_area {width: 306px;}
-  .tittle_text {border-radius: 0px; left: 0; height: 280px; width: 100%; top: -120px;}
+  .tittle_text {background: #bd0000 none repeat scroll 0 0; border-radius: 0px; left: 0; height: 280px; width: 100%; top: -120px;}
   .tittle_text > p {font-size: 16px; top: 200px;}
   .tittle_text span {display: none;}
-  .flickSlider {padding: 124px 0 0 !important;}
+  .flickSlider {padding: 134px 0 0 !important;}
   .hostel {width: auto; float:none;}
   .menu_area {width: 100%;}
   .information {width: 100%;}
@@ -3426,6 +3445,8 @@ a:hover .textbox {
   .facilities_icon > img {width: 40px;}
   .detail_text {margin: 0 0 40px;}
   iframe {height: 300px !important;}
+  #booking_image {bottom: -30px; right: -20px;}
+  #booking_image img {width: 100px;}
 }
 
 /** pad **/
