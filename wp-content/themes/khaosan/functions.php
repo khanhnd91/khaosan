@@ -8,4 +8,12 @@ if ( $post_type_object->hierarchical && ($post->post_type == 'room' || $post->po
     }
     return $args;
 }
+add_action('pre_get_posts', 'set_staff');
+
+function set_staff( $query ){
+    if(!is_admin() && $query->is_main_query() &&  $query->query_vars['post_type'] == 'staff' ):
+        $query->set('posts_per_page', 500);
+        return;
+    endif;
+}
 ?>

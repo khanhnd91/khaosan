@@ -37,13 +37,9 @@ while (have_posts()) : the_post();
         <div id="content">
             <!-- content -->
             <div class="detail">
-                <div class="detail_tittle">
-                    予約するホテルを選択してください。
-                </div>
-                <div class="detail_text">
-                    <a href="#"><div class="booking_world">HOSTEL<img src="<?php echo get_template_directory_uri()?>/img/world_arrow.png"></div></a>
-                    <a href="#"><div class="booking_world">RYOKAN<img src="<?php echo get_template_directory_uri()?>/img/world_arrow.png"></div></a>
-                </div>
+                <?php
+                the_content();
+                ?>
             </div>
         </div>
     </article>
