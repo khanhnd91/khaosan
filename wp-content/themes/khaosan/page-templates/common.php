@@ -33,7 +33,6 @@ get_header();
                 <p>
                     <?php the_title();?>
                 </p>
-                <span>subtitle</span>
             </div>
         </div>
 
@@ -87,11 +86,6 @@ get_header();
         endwhile;
         ?>
     </article>
-
-        <!-- other -->
-        <?php get_template_part( 'other' );?>
-        <!-- NEWS -->
-        <?php get_template_part( 'news' );?>
 <?php
 get_footer();
 ?>

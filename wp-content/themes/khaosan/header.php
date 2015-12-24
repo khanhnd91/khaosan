@@ -87,9 +87,9 @@
 
                     <!-- lang -->
                     <nav>
-                        <ul class="lang-menu">
+                        <ul class="lang-menu" style="cursor: pointer">
                             <li class="menu-item-has-children">English
-                                <a href="#">▼</a>
+                                <span>▼</span>
                                 <ul class="sub-menu">
                                     <?php
                                     $language_name = get_post_meta ($top[0]->ID,'language_name', true);
@@ -238,4 +238,3 @@
                     </nav>
                     </div>
     </header>
-

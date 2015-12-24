@@ -68,10 +68,6 @@ get_header(); ?>
                         <?php the_content();?>
                     </div>
                 </div>
-                <!-- other -->
-                <?php get_template_part('other');?>
-                <!-- NEWS -->
-                <?php get_template_part('news');?>
                 <?php
         endwhile;
         ?>

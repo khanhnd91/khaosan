@@ -30,7 +30,6 @@ $cat = $wp_query->query_vars['cat'];
                 <p>
                     KHAOSAN BLOG
                 </p>
-                <span>subtitle</span>
             </div>
         </div>
 
@@ -152,10 +151,6 @@ $cat = $wp_query->query_vars['cat'];
                 ?>
             </div>
         </div>
-        <!-- other -->
-        <?php get_template_part('other');?>
-        <!-- NEWS -->
-        <?php get_template_part('news');?>
     </article>
 <?php
 get_footer();
