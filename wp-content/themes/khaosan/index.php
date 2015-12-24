@@ -201,6 +201,7 @@ get_footer();
                 // カルーセル
                 $("#owl-demo").owlCarousel({
                         navigation: true,		// Show next and prev buttons
+                        navigationText: ["<", ">"],
                         slideSpeed: 300,		// ページ送りした時のスライドスピード
                         paginationSpeed: 800,	// 自動のスライドスピード
                         singleItem: true,		// アイテムを1つにする

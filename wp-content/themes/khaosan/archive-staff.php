@@ -24,7 +24,7 @@ get_header();
                                     $tags = get_tags();
                                     foreach($tags as $tag){
                                     ?>
-                                    <a href="#" data-filter=".<?php echo $tag->slug ?>"><?php echo $tag->name ?></a>
+                                    <a href="<?php echo $tag->description;?>" data-filter=".<?php echo $tag->slug ?>"><?php echo $tag->name ?></a>
                                     <?php
                                     }
                                     ?>
@@ -37,6 +37,7 @@ get_header();
                             <div class="isotope">
                                     <?php
                                     // Start the Loop.
+                                    wp_get_archives( array( 'type' => 'postbypost', 'limit' => 20, 'format' => 'custom' ) );
                                     while ( have_posts() ) : the_post();
                                     $tags = wp_get_post_tags(get_the_ID());
                                     $str = '';
