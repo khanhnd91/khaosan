@@ -19,12 +19,12 @@ get_header();
                     <div class="staff_menu">
 
                             <div class="filter">
-                                    <a href="#" data-filter="*" class="current">#All Tags</a>
+                                    <a href="#" data-filter="*" id="all-tags" class="current staff-tag">#All Tags</a>
                                     <?php
                                     $tags = get_tags();
                                     foreach($tags as $tag){
                                     ?>
-                                    <a href="<?php echo $tag->description;?>" data-filter=".<?php echo $tag->slug ?>"><?php echo $tag->name ?></a>
+                                    <a href="#" class="staff-tag" id="<?php echo $tag->slug;?>" data-filter=".<?php echo $tag->slug ?>"><?php echo $tag->name ?></a>
                                     <?php
                                     }
                                     ?>
@@ -37,7 +37,6 @@ get_header();
                             <div class="isotope">
                                     <?php
                                     // Start the Loop.
-                                    wp_get_archives( array( 'type' => 'postbypost', 'limit' => 20, 'format' => 'custom' ) );
                                     while ( have_posts() ) : the_post();
                                     $tags = wp_get_post_tags(get_the_ID());
                                     $str = '';
@@ -84,3 +83,21 @@ get_footer();
 <script src="<?php echo get_template_directory_uri()?>/js/imagesloaded.js"></script>
 <script src="<?php echo get_template_directory_uri()?>/js/jquery.isotope.js"></script>
 <script src="<?php echo get_template_directory_uri()?>/js/set.js"></script>
+<script>
+$(window).load(function(){
+    url = window.location.href;
+    url = url.split("&");
+    if(url[1]){
+        tag = url[1].split("=");
+        if(tag[1] && tag[1] !== 'all-tags'){
+            $('#'+tag[1]).click();
+        }
+    }
+   $('.staff-tag').click(function(){
+       url = window.location.href;
+       url = url.split("&");
+       url = url[0]+"&sort="+$(this).attr('id');
+       window.history.pushState("string", "Title", url);
+   });
+});
+</script>

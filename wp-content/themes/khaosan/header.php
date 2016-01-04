@@ -75,7 +75,7 @@
                     background: rgba(0, 0, 0, 0) <?php if(!empty($background_image[1][1])){ echo 'url("'.$background_image[1][1].'")';}?> repeat scroll 0 0 / 50% auto;
             }
     </style>
-  <body onload="initialize();">
+  <body>
   <div id="wrapper">
 
      <!-- header -->
