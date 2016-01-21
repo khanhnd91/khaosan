@@ -9,7 +9,7 @@
                 font-size: 85%;
         }
         #city {
-                width: 150px;
+                width: 200px;
         }
         #nights {
                 width: 100px;
@@ -39,14 +39,49 @@
         .select2-container .select2-selection--single {
                 height: 47px;
         }
+        .slider_prev, .slider_next {
+                top: 72px;
+        }
+        @media screen and (max-width: 960px) {.wideslider {margin-top: 90px;}}
 </style>
+<!-- JS -->
+
+
 <?php
 get_header();
 ?>
     <!-- main area -->
     <article>
+    <!-- NEW top image -->
+        <div class="container">
+            <div class="wideslider">
+                <ul>
+                <?php 
+                    $top = get_posts(array('post_type' => 'top'));
+                    $slide_images = get_post_meta ($top[0]->ID,'slide_image', true);
+                    $slide_images_descriptions = get_post_meta ($top[0]->ID,'slide_image_description', true);
+                    $slide_images_titles = get_post_meta ($top[0]->ID,'slide_image_title', true);
+                    $slide_image_links = get_post_meta($top[0]->ID,'slide_image_link', true);
+                    for ($i = 1; $i <= count($slide_images); $i++) { 
+                 ?>
+                    <!-- slide -->
+                    <li>
+                        <a href="<?php echo $slide_image_links[$i][1]; ?>">
+                            <p class="top_img_tittle"><?php echo $slide_images_titles[$i][1]; ?></p>
+                            <p class="top_img_dis"><?php echo $slide_images_descriptions[$i][1]?></p>
+                            <img src="<?php echo $slide_images[$i][1];?>" alt="">
+                        </a>
+                    </li>
+                    <!-- slide -->
+                <?php
+                    }
+                ?>
+                </ul>
+            </div>
+        </div>
+ 
             <!-- topimg -->
-            <div id="owl-demo" class="owl-carousel owl-theme">
+            <!-- <div id="owl-demo" class="owl-carousel owl-theme">
                 <?php
                 $top = get_posts(array('post_type' => 'top'));
                 $map_text = get_post_meta ($top[0]->ID,'map_text', true);
@@ -71,16 +106,16 @@ get_header();
                     </a>';
                 }
                 ?>
-            </div>
+            </div> -->
 
             <!-- select -->
             <?php get_template_part( 'search-menu' );?>
 
             <!-- TODO:【wordpressにてホテルの追加・更新】 -->
             <!-- HOSTEL -->
-            <div class="contents_title">
+            <!-- <div class="contents_title">
                     <img src="<?php echo get_template_directory_uri()?>/img/title/t_hostel.png">
-            </div>
+            </div> -->
             <div class="imgbox_back">
                     <div class="imgbox_area">
                         <?php
@@ -192,6 +227,8 @@ get_footer();
 <script src="<?php echo get_template_directory_uri()?>/js/googlemaps3.js"></script>
 <script src="<?php echo get_template_directory_uri()?>/js/select2.full.min.js"></script>
 <script src="<?php echo get_template_directory_uri()?>/js/common.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/slider.js"></script>
+<script src="<?php echo get_template_directory_uri()?>/js/search.js"></script>
 <script>
         cities = <?php echo json_encode($global_cities);?>;
         hotels = <?php echo json_encode($custom_hotels);?>;
@@ -206,6 +243,7 @@ get_footer();
                         paginationSpeed: 800,	// 自動のスライドスピード
                         singleItem: true,		// アイテムを1つにする
                         autoPlay: 5000,			// 自動でスライドするスピード。例：5000の場合、5秒
+                        item: 2,
                 });
 
                 // GoogleMap

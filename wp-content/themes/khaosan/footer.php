@@ -51,7 +51,7 @@
 					<p>Q&A</p>
 				</a>
 				<a href="<?php echo $car_rental_link[1][1];?>">
-					<p>CAR RENTAL</p>
+					<p>GROUP</p>
 				</a>
 			</div>
 			<div class="footer_sns">
@@ -65,12 +65,56 @@
 					<img src="<?php echo get_template_directory_uri()?>/img/menu/google_plus.png">
 				</a>
 				<a href="<?php echo $pin_link[1][1];?>">
-					<img src="<?php echo get_template_directory_uri()?>/img/menu/pin.png">
+					<img src="<?php echo get_template_directory_uri()?>/img/menu/instagram.png">
 				</a>
 			</div>
 		</div>
 		<address>&#169; Khaosan Tokyo Hostel, Cheapest Hostel in Central Tokyo</address>
 	</footer>
+    
     <?php wp_footer(); ?>
 </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var url = window.location.href;         //get full url: http://khaosan-test.sakura.ne.jp/?hotel=khaosan-tokyo-world
+        var host = window.location.host;        //get host name: khaosan-test.sakura.ne.jp
+
+        var url_new = url.substring(7,url.length - 1);  // cut new url: khaosan-test.sakura.ne.jp/?hotel=khaosan-tokyo-world
+        host = host.trim();
+
+        if(url_new === host){
+            $('a.toggle.highlight').removeAttr("style");
+        }
+        else{
+            var type_page = "";
+    
+                if( url.indexOf( "hotel" ) != -1 || url.indexOf( "room" ) != -1 || url.indexOf( "access" ) != -1){
+                    type_page = "hostel";
+                }
+                else if(url.indexOf( "staff" ) != -1){
+                    type_page = "staff";
+                }
+                else if (url.indexOf( "qa" ) != -1 ) {
+                    type_page = "q&a";
+                }
+                else if(url.indexOf( "carrental" ) != -1 ){
+                    type_page = "car rental";
+                }
+                else if( url.indexOf( "recruitment" ) != -1 ){
+                    type_page = "recruitment";
+                }
+                else if( url.indexOf( "about" ) != -1 ){
+                    type_page = "about";
+                }
+                else if( url.indexOf( "ウェブサイトリニューアルに関しまして" != -1 )){
+                    type_page = "blog";
+                }
+            /*find element have text equel type_page*/
+            $('a.toggle.highlight').filter(function(index){
+                return $( this ).text().toLowerCase() == type_page;
+            }).css({ "text-decoration" : "underline" , "color" : "#bd0000" });
+               
+        }
+    });
+</script>

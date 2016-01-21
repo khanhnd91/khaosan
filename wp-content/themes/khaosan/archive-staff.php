@@ -11,15 +11,21 @@
 <link rel="canonical" href="#">
 <?php
 get_header();
+
 ?>
     <!-- main area -->
     <article>
             <div id="staff_page">
                     <!-- content -->
+
+                    <div class="staff_title">
+                    STAFF
+                    </div>
+
                     <div class="staff_menu">
 
                             <div class="filter">
-                                    <a href="#" data-filter="*" id="all-tags" class="current staff-tag">#All Tags</a>
+                                    <a href="#" data-filter="*" id="all-tags" class="current staff-tag">All Categories</a>
                                     <?php
                                     $tags = get_tags();
                                     foreach($tags as $tag){
@@ -45,10 +51,12 @@ get_header();
                                     }
                                     ?>
                                     <div class="<?php echo $str; ?> item">
-                                            <?php
+                                            <?php 
                                             $link = get_post_meta ( get_the_ID(),'staff_link', true);
+                                          
+                                            $link_staff = get_home_url().'/?post_type=staff&p='.get_the_ID();
                                             ?>
-                                            <a href="<?php echo $link[1][1];?>">
+                                            <a class = "link_staff" href="<?php echo $link_staff; ?>">
                                                     <div class="isotope_image">
                                                     <?php
                                                     $thumbnail = get_post_meta ( get_the_ID(),'staff_thumbnail', true);
@@ -56,6 +64,11 @@ get_header();
                                                     ?>
                                                             <img src="<?php echo $thumbnail[1][1];?>">
                                                     <?php }?>
+                                                    </div>
+                                                    <div class="isotope_title">
+                                                    <p>
+                                                        <?php  echo the_title(); ?>
+                                                    </p>
                                                     </div>
                                                     <div class="isotope_text">
                                                         <?php
@@ -98,6 +111,21 @@ $(window).load(function(){
        url = url.split("&");
        url = url[0]+"&sort="+$(this).attr('id');
        window.history.pushState("string", "Title", url);
+   });
+   $('.link_staff').click(function(){
+        url_staff = $('a.link_staff').attr('href');
+        url = window.location.href;
+        host_name =  window.location.hostname;
+        url_pathname_staff = window.location.search;
+//alert(url+" va " +"http://"+host_name+"?post_type=staff");
+
+        //if (url != "http://"+host_name+"?post_type=staff" || url != "http://"+host_name+"?post_type=staff&sort=all-tags") {
+            url = url.split("&");
+            url = url[1].split("=");
+            tag = url[1];
+        //}
+        url_staff = url_staff+'&tag='+tag;
+        $('a.link_staff').attr('href',url_staff);
    });
 });
 </script>

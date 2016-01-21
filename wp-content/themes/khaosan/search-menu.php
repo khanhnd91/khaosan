@@ -1,7 +1,8 @@
 <div id="button_area">
-        <form name="theForm" action="http://reservations.bookhostels.com/khaosantokyo.com/index.php" method="post" target="_blank">
+        <form name="ypro_search" class="obj_search" action="" method="post" target = "_blank">
+        <!-- <form name="theForm" action="http://reservations.bookhostels.com/khaosantokyo.com/index.php" method="post" target="_blank"> -->
                 <!-- Choice -->
-                <input type="hidden" name="Choice" value="CTokyo;Japan">
+                <input type="hidden" name="area_yado_id" id="area_yado_id">
 
                 <!-- Country -->
                 <input type="hidden" name="CountryChoice" value="Japan">
@@ -9,21 +10,40 @@
                 <!-- GroupType -->
                 <input type="hidden" name="GroupType" value="">
 
-                <!-- City -->
-                <select id="city" name="Choice">
-                        <option value="CTokyo;Japan">Tokyo</option>
-                        <option value="CKyoto;Japan">Kyoto</option>
-                        <option value="CSapporo;Japan">Sapporo</option>
-                        <option value="CKanazawa;Japan">Kanazawa</option>
-                        <option value="CFukuoka;Japan">Fukuoka</option>
-                        <option value="CBeppu Spa City Oita;Japan">Beppu Spa City Oita</option>
+                 <!-- City -->
+                <select id="city" name="obj_area" class="obj_area">
+                        <option value="0">AREA</option>
+                <?php  /*$global_cities = get_terms( 'city',array('hide_empty' => false, 'orderby' => 'slug') );
+                        $i = 0;
+                        if ( ! empty( $global_cities ) && ! is_wp_error( $global_cities ) ){
+                                $i = 0;
+                                foreach ( $global_cities as $city ) {   */
+
+                ?>
+               
+                        <option value="a1">TOKYO</option>
+                        <option value="a2">KYOTO</option>
+                        <option value="a3">KANAZAWA</option>
+                        <option value="a4">HOKKAIDO</option>
+                        <option value="a5">ATAMI</option>
+
+                
+                        <?php /* }
+                                $i++;
+                        } */
+                        ?>
+                </select>
+
+                <!-- Hotel -->
+                <select id="hotel" name="obj_yado" class="hotel">
+
                 </select>
 
                 <!-- Arrival Date -->
                 <input type="text" id="check-in" class="date" placeholder="Arrival Date" style="width:110px;height:47px; padding: 0 32px 0 10px">
-                <input type="hidden" name="selYear" id="selYear" value="2016">
-                <input type="hidden" name="selMonth" id="selMonth" value="01">
-                <input type="hidden" name="selDay" id="selDay" value="01">
+                <input type="hidden" name="selYear" id="selYear">
+                <input type="hidden" name="selMonth" id="selMonth" >
+                <input type="hidden" name="selDay" id="selDay" >
 
                 <!-- Nights -->
                 <select id="nights" name="NumNights">
@@ -75,7 +95,7 @@
                 </select>
 
                 <!-- Currency -->
-                <select id="currency" name="Currency" width="180">
+                <!-- <select id="currency" name="Currency" width="180">
                         <option value=""></option>
                         <option value="USD">Currency</option>
                         <option value="AUD">Australian Dollar</option>
@@ -180,8 +200,8 @@
                         <option value="VUV">Vanuatu Vatu</option>
                         <option value="VEB">Venezuelan Bolivar</option>
                         <option value="VND">Vietnamese Dong</option>
-                </select>
+                </select> -->
 
-                <input type="submit" name="Submit" onClick="top.location.href=sel3.value" value="search" class="article_button search">
+                <input type="submit" name="Submit"  value="search" class="article_button search">
         </form>
 </div>

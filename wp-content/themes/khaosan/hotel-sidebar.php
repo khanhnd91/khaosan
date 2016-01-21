@@ -76,29 +76,7 @@
                 </div>
         </div>
 
-        <!-- other hostel -->
-        <?php
-        $other_hotels_name = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_name', true);
-        $other_hotels_link = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_link', true);
-        $other_hotels_eye_catch = get_post_meta ( wp_get_post_parent_id( get_the_ID()),'other_hotel_eye_catch', true);
-        ?>
-        <div class="other_facilities">
-        <?php
-            $count = count($other_hotels_name);
-            for($i = 1;$i<=$count;$i++){
-                if($other_hotels_link[$i][1]!==''){
-                    echo    '<a href="'.$other_hotels_link[$i][1].'" target=’_blank’>
-                                <div class="other_hostel">
-                                    <img src="'.$other_hotels_eye_catch[$i][1].'">
-                                    <p>
-                                        '.$other_hotels_name[$i][1].'
-                                    </p>
-                                </div>
-                            </a>';
-                }
-            }
-        ?>
-        </div>
+       
     <?php
     }
     if($post->post_type == 'hotel'){
@@ -106,6 +84,7 @@
     }else{
         $id = wp_get_post_parent_id( get_the_ID());
     }
+    if($post->post_type == 'hotel'){
     $banner_title = get_post_meta ($id,'banner_title', true);
     $banner_link = get_post_meta ($id,'banner_link', true);
     $banner_eye_catch = get_post_meta ($id,'banner_eye_catch', true);
@@ -130,5 +109,6 @@
         </div>
     <?php
     }
+}
     ?>
 </nav>

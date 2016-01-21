@@ -27,6 +27,7 @@
         <meta name="author" content="khaosan Guest House">
         <meta name="copyright" content="khaosan Guest House">
 	<?php wp_head(); ?>
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
 </head>
 <?php
     //create global available
@@ -116,11 +117,11 @@
                     <!-- desktop_menu -->
                     <div id="desktop_menu">
                             <ul id="toggle">
-                                    <li>
-                                        <a class="toggle" href="<?php echo $about_link[1][1];?>">ABOUT</a>
+                                    <li> 
+                                        <a class="toggle highlight" href="<?php echo $about_link[1][1];?>">ABOUT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="#">HOSTEL</a>
+                                            <a class="toggle highlight" href="#" >HOSTEL</a>
                                             <ul class="inner child">
                                             <?php
                                             if (!empty($global_cities)){
@@ -149,19 +150,19 @@
                                             </ul>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
+                                            <a class="toggle highlight" href="<?php echo get_home_url()?>/?p=<?php echo $recent_post[0]["ID"]?>">BLOG</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo $staff_link[1][1];?>">STAFF</a>
+                                            <a class="toggle highlight"  href="<?php echo $staff_link[1][1];?>">STAFF</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo $recruitment_link[1][1];?>">RECRUITMENT</a>
+                                            <a class="toggle highlight"  href="<?php echo $recruitment_link[1][1];?>">RECRUITMENT</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo $qa_link[1][1];?>">Q&A</a>
+                                            <a class="toggle highlight"  href="<?php echo $qa_link[1][1];?>">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo $car_rental_link[1][1];?>">CAR RENTAL</a>
+                                            <a class="toggle highlight" href="<?php echo $car_rental_link[1][1];?>">GROUP</a>
 <!--                                            <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">
@@ -225,7 +226,7 @@
                                             <a class="toggle" href="<?php echo $qa_link[1][1];?>">Q&A</a>
                                     </li>
                                     <li>
-                                            <a class="toggle" href="<?php echo $car_rental_link[1][1];?>">CAR RENTAL</a>
+                                            <a class="toggle" href="<?php echo $car_rental_link[1][1];?>">GROUP</a>
 <!--                                            <ul class="inner child">
                                                     <li>
                                                             <ul class="toggle menu">
@@ -238,3 +239,4 @@
                     </nav>
                     </div>
     </header>
+
